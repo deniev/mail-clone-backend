@@ -6,14 +6,20 @@ class UserController
     {
         const { email, password } = req.body;
 
-        // Проверка занятости Email-адрес
         const userExist = await User.countDocuments({ email });
 
-        if (userExist) {
-            return res.sendStatus(401);
+        if (! userExist) {
+            const newUser = await User.create({
+                email,
+                password
+            })
+
+            if (newUser) {
+                return res.sendStatus(201)
+            }
         }
 
-
+        return res.sendStatus(401);
     }
 }
 
