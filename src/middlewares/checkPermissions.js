@@ -1,8 +1,5 @@
-export default (req, res, next) => {
-    req.user = {
-        name: "John",
-        age: 33
-    }
+import jwt from "jsonwebtoken";
 
-    next()
+export default (req, res, next) => {
+    next();
 };
