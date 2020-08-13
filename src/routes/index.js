@@ -4,8 +4,8 @@ import UserController from "../controllers/UserController";
 
 const router = Router();
 
-router.post("/folder", FolderController.create);
-router.post("/user", UserController.create);
-
+router.post("/folder/create", FolderController.create);
+router.post("/user/create", UserController.create);
+router.post("/user/login", UserController.login);
 
 export default router;

@@ -1,4 +1,5 @@
 {
   "apiUri": "/api",
-  "mongoUri": "mongodb+srv://halid95:halid95@cluster0-65dlf.mongodb.net/mail"
+  "mongoUri": "mongodb+srv://halid95:halid95@cluster0-65dlf.mongodb.net/mail",
+  "jwtSecret": "5ee7bcc7dae0962bd4a9ec6c"
 }
