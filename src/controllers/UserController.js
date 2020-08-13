@@ -6,6 +6,7 @@ class UserController
     {
         const { email, password } = req.body;
 
+        // Проверка занятости Email-адрес
         const userExist = await User.countDocuments({ email });
 
         if (userExist) {
