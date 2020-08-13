@@ -1,0 +1,4 @@
+{
+  "apiUri": "/api",
+  "mongoUri": "mongodb+srv://halid95:halid95@cluster0-65dlf.mongodb.net/mail"
+}
