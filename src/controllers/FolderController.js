@@ -11,7 +11,10 @@ class FolderController
     {
         const conditions = [
             { system: true },
-            { user: { $eq: req.user, $exists: true } }
+            { user: {
+                $eq: req.user,
+                    $exists: true
+            }}
         ];
 
         Folder.find().or(conditions)
