@@ -10,10 +10,7 @@ class ContentController
                 Folder.getByUser("454545"),
             ]);
 
-            return res.json({
-                folders,
-                messages
-            });
+            return res.json({ folders, messages });
         } catch (e) {
 
         }
