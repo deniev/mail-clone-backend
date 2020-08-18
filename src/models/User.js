@@ -8,7 +8,11 @@ const schema = new Schema({
     password: {
         type: String,
         required: true
-    }
+    },
+    folders: [{
+        type: Schema.ObjectId,
+        ref: "Folder"
+    }]
 });
 
 export default model("User", schema);
