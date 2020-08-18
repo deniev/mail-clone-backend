@@ -24,12 +24,18 @@ class MessageController
 
         session.startTransaction();
 
-        await Promise.all([
-            Message.findByIdAndDelete(message, { session }),
-            Permission.findOne({ message, user }, { session })
-        ]);
+        try {
+            await Promise.all([
+                Message.findByIdAndDelete(message, { session }),
+                Permission.findOne({ message, user }, { session })
+            ]);
 
-        await session.commitTransaction();
+            await session.commitTransaction();
+
+            session.endSession();
+        } catch (e) {
+
+        }
     }
 }
 
