@@ -23,11 +23,15 @@ schema.statics = {
             { system: false },
         ];
 
-        return this.find().or(conditions)
+        return this.find().or(conditions).select(this.selectedFields());
+    },
+
+    getByType(type) {
+        return this.findOne({ type });
     },
 
     selectedFields() {
-        return { name: 1, _id: 0 }
+        return { name: 1 }
     }
 }
 

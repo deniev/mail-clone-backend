@@ -1,11 +1,27 @@
 import { Schema, model } from "mongoose";
 
 const schema = new Schema({
-    subject: String
+    subject: String,
+    folder: {
+        type: Schema.ObjectId,
+        ref: "Folder"
+    },
+    receiver: {
+        type: Schema.ObjectId,
+        ref: "User"
+    },
+    sender: {
+        type: Schema.ObjectId,
+        ref: "User"
+    }
 });
 
 schema.statics = {
-    getByUser(user) {}
+    getByUser(user) {},
+
+    checkPermissions(user, ) {
+
+    }
 };
 
 
