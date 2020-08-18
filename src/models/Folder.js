@@ -17,6 +17,15 @@ const schema = new Schema({
 });
 
 schema.statics = {
+    getByUser(user) {
+        const conditions = [
+            { user },
+            { system: false },
+        ];
+
+        return this.find().or(conditions)
+    },
+
     selectedFields() {
         return { name: 1, _id: 0 }
     }
