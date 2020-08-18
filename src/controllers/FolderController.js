@@ -9,14 +9,18 @@ class FolderController
 
     static async all(req, res)
     {
-        const conditions = [
-            { system: true },
-            { user: { $eq: req.user, $exists: true } }
-        ];
+        try {
+            const conditions = [
+                { system: true },
+                { user: req.user }
+            ];
 
-        await Folder
-            .find()
-            .or(conditions)
+            const folders = await Folder.find().or(conditions)
+
+            return res.status(200).json(folders);
+        } catch (e) {
+
+        }
     }
 }
 
