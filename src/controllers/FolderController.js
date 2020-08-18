@@ -15,7 +15,10 @@ class FolderController
                 { user: req.user }
             ];
 
-            const folders = await Folder.find().or(conditions)
+            const folders = await Folder
+                .find()
+                .or(conditions)
+                .select(Folder.selectedFields())
 
             return res.status(200).json(folders);
         } catch (e) {

@@ -16,4 +16,10 @@ const schema = new Schema({
     }
 });
 
+schema.statics = {
+    selectedFields() {
+        return { name: 1, _id: 0 }
+    }
+}
+
 export default model("Folder", schema);
