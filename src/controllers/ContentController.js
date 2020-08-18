@@ -1,4 +1,5 @@
 import Folder from "../models/Folder";
+import Message from "../models/Message";
 
 class ContentController
 {
@@ -7,7 +8,7 @@ class ContentController
         try {
             const [folders, messages] = await Promise.all([
                 Folder.getByUser("3434"),
-                Folder.getByUser("454545"),
+                Message.getByUser("454545"),
             ]);
 
             return res.json({ folders, messages });
