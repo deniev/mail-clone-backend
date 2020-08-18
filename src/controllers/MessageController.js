@@ -1,4 +1,6 @@
 import Message from "../models/Message";
+import User from "../models/User";
+import Permission from "../models/Permission";
 
 class MessageController
 {
@@ -9,16 +11,22 @@ class MessageController
         const message = await Message.findById(id);
 
         if (! message) {
-            throw new Error("Message not found");
+            return res.sendStatus(404);
         }
 
-        const hasPermissions = await message.hasPermissions(req.user);
+        const hasPermissions = await User.hasPermissions();
 
         if (! hasPermissions) {
             return res.sendStatus(403);
         }
 
-
+        await Promise.all([
+            Message.findByIdAndDelete(message.id),
+            Permission.findByIdAndDelete({
+                message: message.id,
+                user: req.user
+            })
+        ]);
     }
 }
 

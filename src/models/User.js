@@ -15,4 +15,10 @@ const schema = new Schema({
     }]
 });
 
+schema.statics = {
+    hasPermissions() {
+
+    }
+};
+
 export default model("User", schema);
