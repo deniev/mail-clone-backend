@@ -4,7 +4,15 @@ class FolderController
 {
     static async create(req, res)
     {
+        try {
+            const { name, type } = req.body;
 
+            await Folder.create({ name, type });
+
+            return res.sendStatus(201);
+        } catch (e) {
+            return res.sendStatus(500);
+        }
     }
 
     static async all(req, res)
@@ -19,7 +27,7 @@ class FolderController
                 })
             );
         } catch (e) {
-
+            return res.sendStatus(404);
         }
     }
 }
