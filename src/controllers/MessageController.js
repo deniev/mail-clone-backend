@@ -4,9 +4,9 @@ import Permission from "../models/Permission";
 
 class MessageController
 {
-    static async delete(req, res)
+    static async delete({ body, user }, res)
     {
-        const { id } = req.body;
+        const { id } = body;
 
         const message = await Message.findById(id);
 
@@ -14,7 +14,7 @@ class MessageController
             return res.sendStatus(404);
         }
 
-        const hasPermissions = await User.hasPermissions();
+        const hasPermissions = await user.hasPermissions();
 
         if (! hasPermissions) {
             return res.sendStatus(403);
@@ -25,11 +25,8 @@ class MessageController
         session.startTransaction();
 
         await Promise.all([
-            Message.findByIdAndDelete(message.id, { session }),
-            Permission.findByIdAndDelete({
-                message: message.id,
-                user: req.user
-            }, { session })
+            Message.findByIdAndDelete(message, { session }),
+            Permission.findOne({ message, user }, { session })
         ]);
 
         await session.commitTransaction();
