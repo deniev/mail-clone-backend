@@ -13,14 +13,19 @@
     "@babel/core": "^7.11.0",
     "@babel/node": "^7.10.5",
     "@babel/preset-env": "^7.11.0",
+    "activity-detector": "^3.0.0",
     "async": "^3.2.0",
     "body-parser": "^1.19.0",
     "config": "^3.3.1",
     "cors": "^2.8.5",
     "express": "^4.17.1",
+    "express-validator": "^6.6.1",
+    "knex": "^0.21.4",
     "moment": "^2.27.0",
+    "mongodb": "^3.6.0",
     "mongoose": "^5.9.27",
     "nodemon": "^2.0.4",
+    "sequelize": "^6.3.4",
     "vue-moment": "^4.1.0"
   }
 }
