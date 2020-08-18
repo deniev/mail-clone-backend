@@ -7,8 +7,8 @@ class ContentController
     {
         try {
             const [folders, messages] = await Promise.all([
-                Folder.getByUser("3434"),
-                Message.getByUser("454545"),
+                Folder.getByUser(req.user),
+                Message.getByUser(req.user),
             ]);
 
             return res.json({ folders, messages });
