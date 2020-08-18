@@ -14,7 +14,9 @@ class FolderController
             { user: { $eq: req.user, $exists: true } }
         ];
 
-        Folder.find().or(conditions)
+        await Folder
+            .find()
+            .or(conditions)
     }
 }
 
