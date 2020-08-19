@@ -4,36 +4,16 @@ import Permission from "../models/Permission";
 
 class MessageController
 {
-    static async delete({ body, user }, res)
+    static async delete(req, res)
     {
-        const { id } = body;
+        const { id } = req.body;
 
-        const message = await Message.findById(id);
-
-        if (! message) {
-            return res.sendStatus(404);
+        const conditions = {
+            message: id,
+            user: req.user
         }
 
-        const hasPermissions = await user.hasPermissions();
-
-        if (! hasPermissions) {
-            return res.sendStatus(403);
-        }
-
-        const session = await mongoose.startSession();
-
-        session.startTransaction();
-
-        try {
-            await Promise.all([
-                Message.findByIdAndDelete(message, { session }),
-                Permission.findOne({ message, user }, { session })
-            ]);
-
-            await session.commitTransaction();
-
-            session.endSession();
-        } catch (e) {
+        if (! Permission.has(conditions)) {
 
         }
     }
