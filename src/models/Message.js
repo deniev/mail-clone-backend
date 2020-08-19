@@ -17,6 +17,10 @@ const schema = new Schema({
 });
 
 schema.statics = {
+    delete(id) {
+
+    },
+
     getByUser(user) {},
 
     checkPermissions(user, ) {
