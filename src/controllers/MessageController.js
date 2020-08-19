@@ -20,9 +20,9 @@ class MessageController
             sender: req.user
         };
 
-        await Promise.all([
-            Message.create({ ...data, type: "inbox" }),
-            Message.create({ ...data, type: "sent" })
+        await Message.insertMany([
+            { ...data, type: "inbox" },
+            { ...data, type: "sent" }
         ]);
     }
 
